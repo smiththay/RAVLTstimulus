@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RAVLTstimulus</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RAVLTstimulus.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">RAVLTstimulus</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <script type="module">import { Application, Controller } from "https://unpkg.com/%40hotwired/stimulus/dist/stimulus.js"
+            window.Stimulus = Application.start()
+
+            Stimulus.register("recall", class extends Controller {
+                static targets = ['totalCorrect', 'totalFalsePositives', 'totalAccuracy', 'trial1', 'trial2', 'trial3', 'trial4', 'trial5', 'totalRecall', 'intrusion1', 'intrusion2', 'intrusion3', 'intrusion4', 'intrusion5', 'intrusion6', 'intrusionB', 'delayedIntrusion', 'totalIntrusion']
+
+                connect() {
+                    this.updateTotalRecall();
+                    this.updateTotalIntrusion();
+                    this.updateAccuracy();
+                }
+
+
+                updateTotalRecall() {
+                    const totalRecall = parseInt(this.trial1Target.value) + parseInt(this.trial2Target.value) + parseInt(this.trial3Target.value) + parseInt(this.trial5Target.value) + parseInt(this.trial5Target.value)
+                    this.totalRecallTarget.value = totalRecall
+                }
+
+                totalRecall() {
+                    return parseInt(this.totalRecallTarget.value)
+                }
+
+                updateTotalIntrusion() {
+                    const totalIntrusion = parseInt(this.intrusion1Target.value) + parseInt(this.intrusion2Target.value) + parseInt(this.intrusion3Target.value) + parseInt(this.intrusion4Target.value) + parseInt(this.intrusion5Target.value) + parseInt(this.intrusionBTarget.value) + parseInt(this.intrusion6Target.value) + parseInt(this.delayedIntrusionTarget.value)
+                    this.totalIntrusionTarget.value = totalIntrusion
+                }
+
+                totalIntrusion() {
+                    return parseInt(this.totalIntrusionTarget.value)
+                }
+
+                updateAccuracy() {
+                    const totalCorrect = parseInt(this.totalCorrectTarget.value);
+                    const totalFalsePositives = parseInt(this.totalFalsePositivesTarget.value);
+
+                    if (totalCorrect >= 0 && totalFalsePositives >= 0 && totalCorrect <= 15 && totalFalsePositives <= 15) {
+                        const accuracy = Math.round((totalCorrect + (15 - totalFalsePositives)) / 30 * 100);
+                        this.totalAccuracyTarget.value = accuracy;
+                    } else {
+                        this.totalAccuracyTarget.value = null;
+                    }
+
+                }
+
+                totalAccuracy() {
+                    return parseInt(this.totalAccuracyTarget.value);
+                }
+
+            })
+        </script>
+
+
+
+        <script type="module">import { Application, Controller } from "https://unpkg.com/%40hotwired/stimulus/dist/stimulus.js"
+            window.Stimulus = Application.start()
+
+            Stimulus.register("checkbox", class extends Controller {
+
+                static targets = ['skipFormCheckbox', 'skipFormReason', 'skipDelayedReason', 'skipDelayedCheckbox', 'skipRecognitionReason', 'skipRecognitionCheckbox', 'skipFormField', 'skipDelayedSection', 'skipRecognitionSection']
+
+                connect() {
+                    this.toggleSkipFormReason();
+                    this.toggleSkipDelayedReason();
+                    this.toggleSkipRecognitionReason();
+                    this.toggleSkipFormFields();
+                    this.toggleSkipDelayedSection();
+                    this.toggleSkipRecognitionSection();
+                }
+
+                toggleSkipFormReason() {
+                    const skipFormChecked = this.skipFormCheckboxTarget.checked;
+
+
+                    this.skipFormReasonTargets.forEach((target) => {
+                        target.disabled = !skipFormChecked;
+                    });
+
+                }
+
+                toggleSkipDelayedReason() {
+                    const skipDelayedChecked = this.skipDelayedCheckboxTarget.checked;
+
+                    this.skipDelayedReasonTargets.forEach((target) => {
+                        target.disabled = !skipDelayedChecked;
+                    });
+                }
+
+                toggleSkipRecognitionReason() {
+                    const skipRecognitionChecked = this.skipRecognitionCheckboxTarget.checked;
+
+                    this.skipRecognitionReasonTargets.forEach((target) => {
+                        target.disabled = !skipRecognitionChecked;
+                    });
+                }
+
+
+                toggleSkipFormFields() {
+                    const skipFormChecked = this.skipFormCheckboxTarget.checked;
+
+
+                    this.skipFormFieldTargets.forEach((target) => {
+                        target.disabled = skipFormChecked;
+                    });
+
+                }
+
+                toggleSkipDelayedSection() {
+                    const skipDelayedChecked = this.skipDelayedCheckboxTarget.checked;
+
+
+                    this.skipDelayedSectionTargets.forEach((target) => {
+                        target.disabled = skipDelayedChecked;
+                    });
+
+                }
+
+                toggleSkipRecognitionSection() {
+                    const skipRecognitionChecked = this.skipRecognitionCheckboxTarget.checked;
+
+
+                    this.skipRecognitionSectionTargets.forEach((target) => {
+                        target.disabled = skipRecognitionChecked;
+                    });
+
+                }
+            })
+        </script>
+
+        <script type="module">import { Application, Controller } from "https://unpkg.com/%40hotwired/stimulus/dist/stimulus.js"
+            window.Stimulus = Application.start()
+
+            Stimulus.register("radio", class extends Controller {
+                static targets = ["skipFormReason", "skipDelayedReason", "skipRecognitionReason"]
+
+                connect() {
+                    this.skipFormReasonTargets.forEach(radio => {
+                        radio.addEventListener("change", this.handleSkipFormReasonChange)
+                    })
+                    this.skipDelayedReasonTargets.forEach(delayedRadio => {
+                        delayedRadio.addEventListener("change", this.handleSkipDelayedReasonChange)
+                    })
+                }
+
+                handleSkipFormReasonChange = event => {
+                    const skipFormReasonValue = event.target.value
+                    this.skipDelayedReasonTargets.forEach(delayedRadio => {
+                        delayedRadio.checked = delayedRadio.value == skipFormReasonValue
+                    })
+                    this.skipRecognitionReasonTargets.forEach(radio => {
+                        radio.checked = radio.value == skipFormReasonValue
+                    })
+                }
+                handleSkipDelayedReasonChange = event => {
+                    const skipDelayedReasonValue = event.target.value
+                    this.skipRecognitionReasonTargets.forEach(radio => {
+                        radio.checked = radio.value == skipDelayedReasonValue
+                    })
+                }
+
+            })</script>
+
+
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - RAVLTstimulus - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

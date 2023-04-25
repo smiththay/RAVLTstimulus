@@ -1,0 +1,385 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div data-controller="recall checkbox radio">
+            <form>
+                <table class="table table-bordered table-striped mb-5" >
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check-inline form-check">
+                                    <input id="SkipForm" type="checkbox" class="form-check-input" data-target="checkbox.skipFormCheckbox" data-action="change->checkbox#toggleSkipFormReason change->checkbox#toggleSkipFormFields">
+                                    <label class="form-check-label">Skip Form</label>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">Skip Form Reason</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipFormReason" name="skipFormReason" value="88" data-target="radio.skipFormReason checkbox.skipFormReason" />
+                                    <label class="form-check-label" for="SkipFormReason[0]">Not assessed, optional <span class="badge badge-pill badge-light">88</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipFormReason" name="skipFormReason" value="95" data-target="radio.skipFormReason checkbox.skipFormReason" />
+                                    <label class="form-check-label" for="SkipFormReason[1]">Physical problem <span class="badge badge-pill badge-light">95</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipFormReason" name="skipFormReason" value="96" data-target="radio.skipFormReason checkbox.skipFormReason" />
+                                    <label class="form-check-label" for="SkipFormReason[2]">Cognitive/behavior problem <span class="badge badge-pill badge-light">96</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipFormReason" name="skipFormReason" value="97" data-target="radio.skipFormReason checkbox.skipFormReason" />
+                                    <label class="form-check-label" for="SkipFormReason[3]">Other problem <span class="badge badge-pill badge-light">97</span> </label>
+                                </div>
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipFormReason" name="skipFormReason" value="98" data-target="radio.skipFormReason checkbox.skipFormReason" />
+                                    <label class="form-check-label" for="SkipFormReason[4]">Verbal refusal <span class="badge badge-pill badge-light">98</span> </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    KEY: If the subject cannot complete any of the following exams, please give the reason by entering one of the following codes:
+                                    <br />
+                                    88 = Not assessed, optional, 95 = Physical problem, 96 = Cognitive/behavior problem, 97 = Other problem, 98 = Verbal refusal
+                                </div>
+                            </td>
+                            <td></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col-md-12 p-4">
+
+                        <div class="row">
+                            <div class="col-sm-1 offset-sm-3">
+                                <strong>Total Recall</strong>
+                            </div>
+                            <div class="col-sm-1">
+                                <strong>Total Intrusions</strong>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Trial 1</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.trial1 checkbox.skipFormField" data-action="input->recall#updateTotalRecall" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusion1 checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Trial 2</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.trial2 checkbox.skipFormField" data-action="input->recall#updateTotalRecall" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusion2 checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Trial 3</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.trial3 checkbox.skipFormField" data-action="input->recall#updateTotalRecall" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusion3 checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Trial 4</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.trial4 checkbox.skipFormField" data-action="input->recall#updateTotalRecall" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusion4 checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Trial 5</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.trial5 checkbox.skipFormField" data-action="input->recall#updateTotalRecall" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusion5 checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">List B</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="checkbox.skipFormField" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusionB checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Trial 6</label>
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="checkbox.skipFormField" />
+                            </div>
+                            <div class="col-sm-1 p-2">
+                                <input type="number" class="form-control" data-target="recall.intrusion6 checkbox.skipFormField" data-action="input->recall#updateTotalIntrusion" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 p-2">
+                                <label class="control-label">Time Immediate Test Ended</label>
+                            </div>
+                            <div class="col-sm-2 p-2">
+                                <input class="form-control" type="datetime-local" data-target="checkbox.skipFormField" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h5>
+                    Delayed Recall (Optional)
+                </h5>
+                <table class="table table-bordered table-striped mb-5">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check-inline form-check">
+                                    <input id="SkipDelayed" class="form-check-input" type="checkbox" data-target="checkbox.skipDelayedCheckbox checkbox.skipFormField" data-action="change->checkbox#toggleSkipDelayedReason change->checkbox#toggleSkipDelayedSection" />
+                                    <label class="form-check-label">Skip Delayed</label>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">Skip Delayed Reason</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipDelayedReason" name="skipDelayedReason" value="88" data-target="radio.skipDelayedReason checkbox.skipDelayedReason"  />
+                                    <label class="form-check-label" for="SkipDelayedReason[0]">Not assessed, optional <span class="badge badge-pill badge-light">88</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipDelayedReason" name="skipDelayedReason" value="95"  data-target="radio.skipDelayedReason checkbox.skipDelayedReason" />
+                                    <label class="form-check-label" for="SkipDelayedReason[1]">Physical problem <span class="badge badge-pill badge-light">95</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipDelayedReason" name="skipDelayedReason" value="96"  data-target="radio.skipDelayedReason checkbox.skipDelayedReason" />
+                                    <label class="form-check-label" for="SkipDelayedReason[2]">Cognitive/behavior problem <span class="badge badge-pill badge-light">96</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipDelayedReason" name="skipDelayedReason" value="97"  data-target="radio.skipDelayedReason checkbox.skipDelayedReason" />
+                                    <label class="form-check-label" for="SkipDelayedReason[3]">Other problem <span class="badge badge-pill badge-light">97</span> </label>
+                                </div>
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipDelayedReason" name="skipDelayedReason" value="98"  data-target="radio.skipDelayedReason checkbox.skipDelayedReason" />
+                                    <label class="form-check-label" for="SkipDelayedReason[4]">Verbal refusal <span class="badge badge-pill badge-light">98</span> </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <label class="control-label">Time Delayed Test Began</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input class="form-control"  type="datetime-local" data-target="checkbox.skipFormField checkbox.skipDelayedSection"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <label class="control-label">Total Delayed Recall</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="number" class="form-control" data-target="checkbox.skipFormField checkbox.skipDelayedSection" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <label class="control-label">Delayed Intrusions</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="number" class="form-control" data-target="recall.delayedIntrusion checkbox.skipFormField checkbox.skipDelayedSection" data-action="input->recall#updateTotalIntrusion" />
+                                </div>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>
+                    Total Repetitions
+                </h5>
+                <table class="table table-bordered table-striped mb-5">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <label class="control-label">Total Repetitions from trials 1-6 and delayed trial</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="number" class="form-control" data-target="checkbox.skipFormField" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>
+                    Recognition (Optional)
+                </h5>
+                <table class="table table-bordered table-striped mb-5">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check-inline form-check">
+                                    <input id="SkipRecognition" class="form-check-input" type="checkbox" data-target="checkbox.skipRecognitionCheckbox checkbox.skipFormField checkbox.skipDelayedSection" data-action="change->checkbox#toggleSkipRecognitionReason change->checkbox#toggleSkipRecognitionSection" />
+                                    <label class="form-check-label">Skip Recognition</label>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">Skip Recognition Reason</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipRecognitionReason" name="skipRecognitionReason" value="88" data-target="radio.skipRecognitionReason checkbox.skipRecognitionReason" />
+                                    <label class="form-check-label" for="SkipRecognitionReason[0]">Not assessed, optional <span class="badge badge-pill badge-light">88</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipRecognitionReason" name="skipRecognitionReason" value="95" data-target="radio.skipRecognitionReason checkbox.skipRecognitionReason" />
+                                    <label class="form-check-label" for="SkipRecognitionReason[1]">Physical problem <span class="badge badge-pill badge-light">95</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipRecognitionReason" name="skipRecognitionReason" value="96" data-target="radio.skipRecognitionReason checkbox.skipRecognitionReason" />
+                                    <label class="form-check-label" for="SkipRecognitionReason[2]">Cognitive/behavior problem <span class="badge badge-pill badge-light">96</span> </label>
+                                </div>
+
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipRecognitionReason" name="skipRecognitionReason" value="97" data-target="radio.skipRecognitionReason checkbox.skipRecognitionReason" />
+                                    <label class="form-check-label" for="SkipRecognitionReason[3]">Other problem <span class="badge badge-pill badge-light">97</span> </label>
+                                </div>
+                                <div class="form-check form-check">
+                                    <input type="radio" class="form-check-input" id="SkipRecognitionReason" name="skipRecognitionReason" value="98" data-target="radio.skipRecognitionReason checkbox.skipRecognitionReason" />
+                                    <label class="form-check-label" for="SkipRecognitionReason[4]">Verbal refusal <span class="badge badge-pill badge-light">98</span> </label>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div>
+                                    <label class="control-label">Recognition Total Correct</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="number" class="form-control" data-target="recall.totalCorrect checkbox.skipFormField checkbox.skipDelayedSection checkbox.skipRecognitionSection" data-action="input->recall#updateAccuracy" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <label class="control-label">Recognition Total False Positives</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="number" class="form-control" data-target="recall.totalFalsePositives checkbox.skipFormField checkbox.skipDelayedSection checkbox.skipRecognitionSection" data-action="input->recall#updateAccuracy" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>
+                    Totals
+                </h5>
+                <table class="table table-bordered table-striped mb-5">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="control-label">Immediate Trials Total Correct</label>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" data-target="recall.totalRecall" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">Total Intrusions</label>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" data-target="recall.totalIntrusion" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">Total Accuracy</label>
+                            </td>
+                            <td>
+                                <input class="form-control" data-target="recall.totalAccuracy" readonly />
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
